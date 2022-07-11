@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply text-white bg-gray-900;
 }
 
-h1 {
-  @apply text-5xl prose-2xl prose-invert;
+p {
+  @apply prose;
 }
