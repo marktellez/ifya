@@ -10,6 +10,7 @@ import Button from "@/ui/buttons";
 
 export default function Pay({ onCharge = () => {}, total }) {
   const [paymentElement, setPaymentElement] = useState(undefined);
+  const [busy, setBusy] = useState(false);
   const [ready, setReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const elements = useElements();
@@ -32,8 +33,10 @@ export default function Pay({ onCharge = () => {}, total }) {
   }, [paymentElement]);
 
   async function charge() {
+    setBusy(true);
     const { error } = await stripe.confirmPayment({
       elements,
+      redirect: "if_required",
     });
     onCharge(error);
   }
@@ -43,7 +46,7 @@ export default function Pay({ onCharge = () => {}, total }) {
       <PaymentElement />
       {loaded ? (
         <div className="my-4">
-          <Button onClick={charge} disabled={!ready}>
+          <Button onClick={charge} disabled={busy || !ready}>
             Support this creator with ${total}
           </Button>
         </div>

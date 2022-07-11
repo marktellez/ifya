@@ -3,8 +3,8 @@ import Layout from "@/features/layout/homepage";
 
 export default function Homepage({ products }) {
   return (
-    <Layout className="bg-[#3ba8f6] ">
-      <div className="bg-blue-600 rounded-xl p-4 opacity-90 ">
+    <Layout>
+      <div className=" bg-blue-600 rounded-xl p-4 opacity-90 ">
         <p className="my-2 text-xl text-white prose prose-invert ">
           Signups are closed while we are in beta.
         </p>

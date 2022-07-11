@@ -30,22 +30,10 @@ export default function GetIt({ creator, product, paymentIntent }) {
 
       setClientSecret(json.client_secret);
     })();
-  }, [clientSecret, paying, amount]);
+  }, [paying, amount]);
 
   return (
     <Layout creator={creator}>
-      <div>
-        <div className="mt-8 italic text-2xl text-blue-500 font-medium">
-          If ya like it...
-        </div>
-
-        <h1 className="-my-14 ml-3 flex items-center text-5xl font-black">
-          Show some
-          <HeartIcon className="transform -rotate-6 text-red-500 -mx-4 h-48 w-48" />
-          to {creator.name}!
-        </h1>
-      </div>
-
       <section className="px-8 mt-24">
         <h2 className="mb-6 text-2xl font-medium tracking-tight text-gray-700">
           {product.title}
@@ -72,7 +60,13 @@ export default function GetIt({ creator, product, paymentIntent }) {
               options={{
                 clientSecret,
               }}>
-              <Pay total={amount} onCharge={() => setShowLink(true)} />
+              <Pay
+                total={amount}
+                onCharge={() => {
+                  setPaying(false);
+                  setShowLink(true);
+                }}
+              />
             </Elements>
           )
         ) : showLink ? (
@@ -100,7 +94,7 @@ export default function GetIt({ creator, product, paymentIntent }) {
                 onChange={(amount) => setAmount(amount)}
               />
               <BuyButton
-                disabled={isNaN(parseInt(amount))}
+                disabled={paying || isNaN(parseInt(amount))}
                 onClick={() => {
                   setShowLink(parseInt(amount) === 0);
                   setPaying(parseInt(amount) > 0);
@@ -138,6 +132,7 @@ export async function getServerSideProps(req) {
     ])
     .toArray();
 
+  console.dir({ products });
   return {
     props: {
       product: jsonify(products[0]),

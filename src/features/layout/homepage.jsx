@@ -2,7 +2,7 @@ import HeartIcon from "@/ui/icons/heart";
 
 export default function HomepageLayout({ children, creator }) {
   return (
-    <main className="flex items-center justify-center w-full h-screen">
+    <main className="homepage flex items-center justify-center w-full h-screen">
       <div className="relative">
         <div>
           <div className="absolute z-20 -top-4 left-48 text-white text-[25px] font-light">
