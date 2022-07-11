@@ -22,13 +22,15 @@ export default function GetIt({ creator, product, paymentIntent }) {
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
   );
 
-  useEffect(async () => {
-    if (!paying) return;
-    const req = await fetch(`/api/payment-intents?amount=${amount}`);
-    const json = await req.json();
+  useEffect(() => {
+    (async () => {
+      if (!paying) return;
+      const req = await fetch(`/api/payment-intents?amount=${amount}`);
+      const json = await req.json();
 
-    setClientSecret(json.client_secret);
-  }, [clientSecret, paying]);
+      setClientSecret(json.client_secret);
+    })();
+  }, [clientSecret, paying, amount]);
 
   return (
     <Layout creator={creator}>
@@ -54,8 +56,10 @@ export default function GetIt({ creator, product, paymentIntent }) {
             Note from the creator:
           </h3>
 
-          {product.description.split("\r").map((line) => (
-            <p className="font-thin md:text-xl ">{line}</p>
+          {product.description.split("\r").map((line, i) => (
+            <p key={i} className="font-thin md:text-xl ">
+              {line}
+            </p>
           ))}
         </div>
       </section>
