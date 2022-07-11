@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ObjectId } from "mongodb";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import dbPromise, { jsonify } from "@/modules/db";
+import Layout from "@/features/layout";
 
 import Pay from "@/features/payment";
 
@@ -31,7 +31,7 @@ export default function GetIt({ creator, product, paymentIntent }) {
   }, [clientSecret, paying]);
 
   return (
-    <main className="container mx-auto">
+    <Layout creator={creator}>
       <div>
         <div className="mt-8 italic text-2xl text-blue-500 font-medium">
           If ya like it...
@@ -109,7 +109,7 @@ export default function GetIt({ creator, product, paymentIntent }) {
           </div>
         )}
       </section>
-    </main>
+    </Layout>
   );
 }
 

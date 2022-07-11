@@ -7,6 +7,9 @@ module.exports = {
   important: true,
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Poppins", "sans-serif"],
+      },
       colors: {
         blue: {
           DEFAULT: "#3BA8F6",
