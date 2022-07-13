@@ -1,5 +1,5 @@
 import dbPromise, { jsonify } from "@/modules/db";
-import Layout from "@/features/layout/homepage";
+import Layout from "@/features/layout";
 
 export default function Homepage({ products }) {
   return (

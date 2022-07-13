@@ -17,9 +17,6 @@ export default function MoneyField({ value, focused = false, ...rest }) {
         setFocused(true);
       }}>
       <div
-        style={{
-          width: value.length * 10 + 60,
-        }}
         ref={ref}
         className={`flex items-center  border border-gray-300 py-2 px-4`}>
         <span className="mr-2">$</span>
