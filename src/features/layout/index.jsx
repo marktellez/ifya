@@ -3,18 +3,22 @@ import HeartIcon from "@/ui/icons/heart";
 export default function Layout({ children, creator }) {
   return (
     <main className="w-full md:w-[824px] mx-auto text-white">
-      <div className="mx-auto w-full relative ">
-        <div className="absolute z-30 left-[100px] md:left-[300px] -top-[90px] font-thin drop-shadow-xl  text-[42px] tracking-tighter">
-          If ya like it...
-        </div>
-        <div className="absolute z-30 font-black left-[160px] md:left-[340px] drop-shadow-xl -top-[52px]  text-[46px] tracking-tighter">
-          Show some
+      <div className=" mx-auto relative w-[260px] flex items-center justify-center ">
+        <div>
+          <div className="z-50 absolute left-0 top-[70px] text-3xl font-medium tracking-wide drop-shadow-sm">
+            If ya like it...
+          </div>
+          <div className="absolute right-0 top-[100px] z-50  text-4xl font-bold drop-shadow-sm">
+            Show some
+          </div>
         </div>
 
-        <HeartIcon className="absolute z-20  drop-shadow-2xl left-[120px] md:left-[440px] -top-[140px]  transform -rotate-6 text-red-500  h-[220px] w-[220px]" />
+        <HeartIcon className="transform -rotate-6 text-red-500  h-[220px] w-[220px] drop-shadow-lg" />
       </div>
 
-      <div className="mt-28 text-gray-800 md:rounded-2xl p-6">{children}</div>
+      <div className="-mt-20 border bg-white text-gray-900 md:rounded-2xl p-6">
+        {children}
+      </div>
     </main>
   );
 }
