@@ -27,8 +27,6 @@ handler.put(async (req, res) => {
 });
 
 export async function getCreator({ email }) {
-  console.log("email", email);
-
   const creators = await (
     await dbPromise
   )
@@ -41,7 +39,6 @@ export async function getCreator({ email }) {
     ])
     .toArray();
 
-  console.log("creators", creators);
   return {
     ...creators[0],
   };

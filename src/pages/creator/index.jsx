@@ -29,11 +29,9 @@ export async function getServerSideProps(req) {
   const creator = await getCreator(session);
   const links = await getLinks(creator);
 
-  console.log("links", links);
-  console.log("session", session);
   return {
     props: {
-      creator: jsonify(creator),
+      creator: jsonify({ ...creator, email: session.email }),
       links: jsonify(links),
     },
   };

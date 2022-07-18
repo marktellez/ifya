@@ -5,5 +5,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500&family=Ruda:wght@400;500;700;900&display=swap");
 
 body {
-  @apply bg-[#3ba8f6];
+  @apply bg-[#3ba8f6] font-light;
 }

@@ -3,7 +3,6 @@ import { getSession } from "next-auth/react";
 import Layout from "@/features/layout";
 
 export default function Homepage({ session }) {
-  console.dir({ session });
   return (
     <Layout>
       <div className=" rounded-xl p-4 mt-8">
