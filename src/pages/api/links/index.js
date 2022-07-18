@@ -1,7 +1,34 @@
+import createHandler from "next-connect";
+import { ObjectId } from "mongodb";
 import dbPromise from "@/modules/db";
 
+const handler = createHandler();
+export default handler;
+
+handler.get(async (req, res) => {
+  const links = await getLinks();
+  res.json({ links });
+});
+
+handler.post(async (req, res) => {
+  const { url, text, creator } = JSON.parse(req.body);
+
+  const { insertedId } = await (
+    await dbPromise
+  )
+    .db()
+    .collection(`links`)
+    .insertOne({
+      creator: new ObjectId(creator),
+      url,
+      text,
+    });
+
+  res.json({ _id: insertedId });
+});
+
 export async function getLinks() {
-  await (
+  return await (
     await dbPromise
   )
     .db()
@@ -15,9 +42,11 @@ export async function getLinks() {
           as: "creator",
         },
       },
+      {
+        $addField: {
+          createdAt: { $toDate: "$_id" },
+        },
+      },
     ])
     .toArray();
-}
-export default async function Links(req, res) {
-  res.json({ links: getLinks() });
 }

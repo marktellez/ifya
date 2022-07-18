@@ -23,13 +23,8 @@ export default function Pay({ onCharge = () => {}, total }) {
 
   useEffect(() => {
     if (!paymentElement) return;
-    paymentElement.on("change", (e) => {
-      console.dir(e.complete);
-      setReady(e.complete);
-    });
-    paymentElement.on("ready", () => {
-      setLoaded(true);
-    });
+    paymentElement.on("change", (e) => setReady(e.complete));
+    paymentElement.on("ready", () => setLoaded(true));
   }, [paymentElement]);
 
   async function charge() {

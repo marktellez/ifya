@@ -1,4 +1,4 @@
-import DecimalField from "../decimal-field";
+import TextField from "../text-field";
 
 export default function IntegerField({ value, onChange = () => {}, ...rest }) {
   function parse(val) {
@@ -6,7 +6,7 @@ export default function IntegerField({ value, onChange = () => {}, ...rest }) {
   }
 
   return (
-    <DecimalField
+    <TextField
       value={value}
       onChange={(val) => onChange(parse(val))}
       {...rest}

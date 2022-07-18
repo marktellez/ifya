@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Poppins", "sans-serif"],
+        sans: ["Roboto Slab", "sans-serif"],
+        serif: ["Ruda", "serif"],
       },
       colors: {
         blue: {

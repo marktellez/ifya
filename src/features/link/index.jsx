@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import CreatorProfile from "@/features/creator/profile";
+
 import Amount from "./amount";
 import Payment from "./payment";
 import Link from "./link";
@@ -7,6 +9,7 @@ import Link from "./link";
 export default function GetLink({
   url,
   text,
+  creator,
   creator: { name, photo, company, www },
 }) {
   const [amount, setAmount] = useState("1");
@@ -20,7 +23,7 @@ export default function GetLink({
           <Amount
             {...{
               amount,
-              onChange: (amount) => amount > 0 && setAmount(amount),
+              onChange: setAmount,
               onNext: () => (amount > 0 ? setStep("payment") : setStep("link")),
             }}
           />
@@ -44,13 +47,8 @@ export default function GetLink({
 
   return (
     <div className="md:flex gap-4 my-16">
-      <div className="md:w-1/3 flex flex-col items-center mt-4">
-        <img src={photo} className="block w-48" />
-        <div className="mt-4">
-          <div className="font-medium text-xl">{name}</div>
-          <div className="font-thin">{company}</div>
-          <div className="font-thin text-sm">{www}</div>
-        </div>
+      <div className="md:w-1/3 ">
+        <CreatorProfile {...creator} />
       </div>
 
       <div className="md:w-2/3 mt-6">

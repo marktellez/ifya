@@ -16,7 +16,7 @@ export default function TextField({
   return (
     <>
       <input
-        className={`w-full ${
+        className={`w-full font-thin ${
           className ? className : "border border-gray-300 py-2 px-4"
         }`}
         ref={ref}

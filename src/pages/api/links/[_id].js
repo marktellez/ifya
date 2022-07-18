@@ -1,8 +1,35 @@
+import createHandler from "next-connect";
 import { ObjectId } from "mongodb";
 import dbPromise from "@/modules/db";
 
+const handler = createHandler();
+export default handler;
+
+handler.get(async (req, res) => {
+  res.json({ link: await getLink(req.query._id) });
+});
+
+handler.put(async (req, res) => {
+  const { creator, url, text } = JSON.parse(req.body);
+  const { upsertedId } = await (
+    await dbPromise
+  )
+    .db()
+    .collection(`links`)
+    .updateOne(
+      { _id: ObjectId(req.query._id) },
+      {
+        $set: {
+          creator: new ObjectId(creator),
+          url,
+          text,
+        },
+      }
+    );
+  res.json({ _id: upsertedId });
+});
+
 export async function getLink(_id) {
-  console.dir(_id);
   const links = await (
     await dbPromise
   )
@@ -29,8 +56,4 @@ export async function getLink(_id) {
       ...links[0].creator[0],
     },
   };
-}
-
-export default async function Links(req, res) {
-  res.json({ link: await getLink(req.query._id) });
 }
