@@ -23,7 +23,6 @@ export default function Homepage({ session }) {
 
 export async function getServerSideProps(req) {
   const session = await getSession(req);
-  console.dir({ session });
 
   return {
     props: {

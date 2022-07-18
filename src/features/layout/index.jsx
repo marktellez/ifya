@@ -21,14 +21,20 @@ export default function Layout({ children, creator }) {
 
       <div className="-mt-20 border bg-white text-gray-900 md:rounded-2xl p-6">
         <div className="relative ">
-          <div className="absolute right-0">
-            {JSON.stringify(session)}
+          <div className="absolute right-0 z-50">
             {session ? (
-              <button onClick={() => signOut()}>Sign out</button>
+              <button
+                onClick={() =>
+                  signOut({
+                    callbackUrl: `${window.location.origin}`,
+                  })
+                }>
+                Sign out
+              </button>
             ) : (
               <button
                 onClick={() =>
-                  signIn({
+                  signIn("github", {
                     callbackUrl: `${window.location.origin}/creator`,
                   })
                 }>
