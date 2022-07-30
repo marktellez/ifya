@@ -24,6 +24,7 @@ handler.post(async (req, res) => {
       text,
     });
 
+  res.setHeader("Access-Control-Allow-Origin", "*"); // lock this down later
   res.json({ _id: insertedId });
 });
 
