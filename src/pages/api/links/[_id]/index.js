@@ -37,6 +37,9 @@ export async function getLink(_id) {
     .collection(`links`)
     .aggregate([
       {
+        $match: { _id: ObjectId(_id) },
+      },
+      {
         $lookup: {
           localField: "creator",
           from: "creators",

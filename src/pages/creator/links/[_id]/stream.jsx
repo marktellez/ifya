@@ -22,7 +22,9 @@ export default function DonationStream({ awards }) {
 
   useInterval(refresh, 5000);
 
-  const { createdAt, name, amount, note } = awards[0];
+  if (!awards[0]) return "";
+
+  const { name, amount, note } = awards[0];
   return (
     <div className="px-4 h-screen w-screen bg-[#b2020c] text-white flex flex-col items-center justify-center">
       <h1 className="text-7xl font-black mb-16 drop-shadow-sm">My Heroes</h1>
