@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function Payment({ amount, onCharge }) {
+export default function Payment({ amount, link, onCharge }) {
   const [clientSecret, setClientSecret] = useState(undefined);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Payment({ amount, onCharge }) {
       options={{
         clientSecret,
       }}>
-      <Form {...{ amount, onCharge }} />
+      <Form {...{ amount, link, onCharge }} />
     </Elements>
   ) : (
     ""

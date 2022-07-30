@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 export default function TextArea({
   value,
+  label,
   className,
   focused = false,
   onChange = () => {},
@@ -14,14 +15,23 @@ export default function TextArea({
   }, [focused]);
 
   return (
-    <textarea
-      className={`w-full font-thin ${
-        className ? className : "border border-gray-300 py-2 px-4 min-h-[200px]"
-      }`}
-      ref={ref}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      {...rest}
-    />
+    <div>
+      {label && (
+        <label
+          className="font-light text-sm"
+          onClick={() => ref.current.focus()}>
+          {label}
+        </label>
+      )}
+      <textarea
+        className={`w-full font-light text-sm ${
+          className ? className : "border border-gray-300 p-2 min-h-[100px]"
+        }`}
+        ref={ref}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        {...rest}
+      />
+    </div>
   );
 }

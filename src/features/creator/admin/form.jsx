@@ -2,11 +2,7 @@ import { useState } from "react";
 import TextField from "@/ui/forms/text-field";
 import H1 from "@/ui/headings/h1";
 import Button from "@/ui/buttons";
-import withValidation, {
-  minLength,
-  isUrl,
-  isImageUrl,
-} from "@/ui/forms/with-validation";
+import withValidation, { minLength, isUrl } from "@/ui/forms/with-validation";
 
 const NameField = withValidation(TextField);
 const PhotoField = withValidation(TextField);
@@ -58,7 +54,7 @@ export default function CreatorAdminForm({
       />
 
       <PhotoField
-        validations={[isImageUrl]}
+        validations={[isUrl]}
         onValidation={(errors) => validateForm("photo", errors)}
         value={photo}
         placeholder="A url that hosts your photo"

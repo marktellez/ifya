@@ -27,8 +27,8 @@ export default function CreatorAdmin({ links = [], creator }) {
   const [link, setLink] = useState(defaultLinkValues(creator));
   const [showLinkForm, setShowLinkForm] = useState(false);
   const [showLinkSaved, setShowLinkSaved] = useState(false);
-
   const [showLinkCopied, setShowLinkCopied] = useState(false);
+
   const [_links, setLinks] = useState(links);
   const [query, setQuery] = useState("");
 
@@ -61,7 +61,7 @@ export default function CreatorAdmin({ links = [], creator }) {
             <div className="md:w-2/3 md:mt-16 mt-8">
               <div className="md:my-4">
                 <button
-                  className="drop-shadow w-full text-lg md:text-3xl  border bg-blue-500 hover:bg-blue-600 text-white py-1 px-8"
+                  className="drop-shadow w-full text-lg md:text-3xl border bg-blue-500 hover:bg-blue-600 text-white py-1 px-8"
                   onClick={() => setShowLinkForm(true)}>
                   <div className="flex items-center  gap-2 justify-center ">
                     <div>create a</div>
@@ -94,7 +94,9 @@ export default function CreatorAdmin({ links = [], creator }) {
                       .slice(0, 10)
                       .sort((a, b) => a._id < b._id)
                       .map((link) => (
-                        <li className="text-sm border border-gray-300 drop-shadow-sm p-4">
+                        <li
+                          key={link}
+                          className="text-sm border border-gray-300 drop-shadow-sm p-4">
                           <div className="">
                             <div className="">
                               <div className="font-light">

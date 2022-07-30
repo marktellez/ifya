@@ -1,8 +1,12 @@
 import { useRef, useEffect } from "react";
+import TextArea from "../text-area";
+
 export default function TextField({
   value,
+  label,
   className,
   focused = false,
+  multiline = false,
   onChange = () => {},
   ...rest
 }) {
@@ -13,11 +17,21 @@ export default function TextField({
     ref.current.focus();
   }, [focused]);
 
+  if (multiline)
+    return <TextArea {...{ value, label, onChange, focused, ...rest }} />;
+
   return (
-    <>
+    <div>
+      {label && (
+        <label
+          className="font-light text-sm"
+          onClick={() => ref.current.focus()}>
+          {label}
+        </label>
+      )}
       <input
-        className={`w-full font-thin ${
-          className ? className : "border border-gray-300 py-2 px-4"
+        className={`w-full font-light text-sm ${
+          className ? className : "border border-gray-300 p-2"
         }`}
         ref={ref}
         type="text"
@@ -25,6 +39,6 @@ export default function TextField({
         onChange={(e) => onChange(e.target.value)}
         {...rest}
       />
-    </>
+    </div>
   );
 }

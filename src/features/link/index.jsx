@@ -7,6 +7,7 @@ import Payment from "./payment";
 import Link from "./link";
 
 export default function GetLink({
+  _id,
   url,
   text,
   creator,
@@ -33,6 +34,7 @@ export default function GetLink({
           <Payment
             {...{
               amount,
+              link: _id,
               onCharge: () => {
                 setPaid(true);
                 setStep("link");

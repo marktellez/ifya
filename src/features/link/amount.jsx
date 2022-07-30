@@ -11,9 +11,11 @@ export default function Amount({
 }) {
   return (
     <>
-      <h2 className="my-2 text-lg text-blue-500 font-medium">
-        Yes, I want it!
-      </h2>
+      <div className="my-2 text-gray-800 text-xs font-light">
+        <h2 className="text-lg text-blue-500 font-medium">Yes, I want it! </h2>
+        You can always get the link by entering a 0, but please, support
+        creators!
+      </div>
 
       <div className="flex items-center gap-4">
         <div className="w-[100px]">
