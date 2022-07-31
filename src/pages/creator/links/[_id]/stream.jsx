@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
 import { jsonify } from "@/modules/db";
-
-import { format } from "date-fns";
-
 import useInterval from "@/hooks/use-interval";
+import useSound from "use-sound";
 
 import { getAwards } from "@/api/links/[_id]/awards";
 
 import { parseMoney } from "@/modules/string";
 
 export default function DonationStream({ awards }) {
+  const [play] = useSound("/sounds/bravo.wav");
   const [_awards, setAwards] = useState(awards);
+  const [lastAwardId, setLastAwardId] = useState(awards[0]?._id);
 
   async function refresh() {
     const res = await fetch(`/api/links/${awards[0].link[0]._id}/awards`);
     const json = await res.json();
     setAwards(json.awards);
-    console.dir("refreshed!");
   }
 
   useInterval(refresh, 5000);
+
+  useEffect(() => {
+    if (!awards[0]) return;
+    if (lastAwardId === _awards[0]._id) return;
+    play();
+    setLastAwardId(_awards[0]._id);
+  }, [_awards]);
 
   if (!awards[0]) return "";
 
