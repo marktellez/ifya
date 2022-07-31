@@ -63,13 +63,6 @@ export default function DonationStream({ awards }) {
 export async function getServerSideProps(req) {
   const session = await getSession(req);
 
-  if (!session)
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/api/auth/signin",
-      },
-    };
   const {
     params: { _id },
   } = req;

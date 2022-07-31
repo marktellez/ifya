@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { PencilIcon, LinkIcon, CashIcon } from "@heroicons/react/solid";
+import {
+  PencilIcon,
+  LinkIcon,
+  CurrencyDollarIcon,
+  CashIcon,
+} from "@heroicons/react/solid";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import TextField from "@/ui/forms/text-field";
@@ -10,6 +15,8 @@ import Notification from "@/ui/notifications";
 import CreatorAdminForm from "./form";
 import CreatorLinkAdminForm from "./link/form";
 import CreatorProfile from "../profile";
+
+import Link from "next/link";
 
 const defaultLinkValues = (creator) => ({
   creator: creator._id,
@@ -121,6 +128,15 @@ export default function CreatorAdmin({ links = [], creator }) {
                                   className="cursor-pointer w-4 h-4 "
                                 />
                               </CopyToClipboard>
+                              <Link
+                                href={`${process.env.NEXT_PUBLIC_HOST}/creator/links/${link._id}/stream`}>
+                                <a target="_blank">
+                                  <CurrencyDollarIcon
+                                    onClick={() => setShowLinkCopied(true)}
+                                    className="cursor-pointer w-4 h-4 "
+                                  />
+                                </a>
+                              </Link>
                             </div>
                           </div>
                         </li>
